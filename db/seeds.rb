@@ -7,3 +7,14 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+# Gemfile - add this
+
+# db/seeds.rb
+100.times do
+  Product.create!(
+    name: Faker::Commerce.product_name,
+    description: "A great product for your needs",
+    price: rand(2000..5000)
+  )
+end
