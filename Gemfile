@@ -44,5 +44,6 @@ group :development do
   gem "web-console"
 end
 
+gem "faker", group: [ :development, :test ]
 
 gem "vite_rails", "~> 3.0"
