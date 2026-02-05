@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     resource :ping, only: [ :show ]
+    resources :products, only: [ :index ]
   end
 
   get "*path", to: "home#index", constraints: ->(req) { !req.path.start_with?("/api") }
