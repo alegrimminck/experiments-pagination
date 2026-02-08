@@ -1,12 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../pages/Home.vue'
 import Ping from '../pages/Ping.vue'
-import Products from '../pages/Products.vue'
+import ProductsPagination from '../pages/ProductsPagination.vue'
+import ProductsInfinitePagination from '../pages/ProductsInfinitePagination.vue'
 
 const routes = [
   { path: '/', component: Home },
   { path: '/ping', component: Ping },
-  { path: '/products', component: Products }
+  { path: '/products/pagination', component: ProductsPagination },
+  { path: '/products/infinite', component: ProductsInfinitePagination }
 ]
 
 export const router = createRouter({

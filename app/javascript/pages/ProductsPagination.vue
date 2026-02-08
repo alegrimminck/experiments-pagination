@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { useQuery } from '@tanstack/vue-query'
+import { useQuery, keepPreviousData } from '@tanstack/vue-query'
 
 const page = ref(1)
 
 const { data, isLoading, error } = useQuery({
   queryKey: ['products', page],
-  queryFn: () => fetch(`/api/products?page=${page.value}`).then(res => res.json())
+  queryFn: () => fetch(`/api/products?page=${page.value}`).then(res => res.json()),
+  placeholderData: keepPreviousData
 })
 
 const products = computed(() => data.value?.products ?? [])
@@ -24,9 +25,7 @@ function nextPage() {
 
 <template>
   <div>
-    <p v-if="isLoading">Loading...</p>
-    <p v-else-if="error">Error: {{ error?.message }}</p>
-    <template v-else>
+    <template v-if="data">
       <ul>
         <li v-for="product in products" :key="product.id">
           <strong>{{ product.name }}</strong> — {{ product.description }} ({{ product.price }})
@@ -39,5 +38,7 @@ function nextPage() {
         <button type="button" :disabled="!hasNext" @click="nextPage">Next</button>
       </nav>
     </template>
+    <p v-else-if="isLoading">Loading...</p>
+    <p v-else-if="error">Error: {{ error?.message }}</p>
   </div>
 </template>
