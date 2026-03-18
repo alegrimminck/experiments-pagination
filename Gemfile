@@ -46,5 +46,5 @@ end
 
 gem "faker", group: [ :development, :test ]
 
-gem "vite_rails", "~> 3.0"
+gem "vite_rails", "~> 3.10"
 gem "kaminari"
